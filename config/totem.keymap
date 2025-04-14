@@ -13,19 +13,19 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
-#define Base        0
-#define Nav         1
-#define Sym         2
-#define Fun         3
-#define Game        4
-#define Gameplus    5
+#define Alpha        0
+#define Nav          1
+#define Num          2
 
 &mt {
     quick-tap-ms = <100>;
     global-quick-tap;
     flavor = "tap-preferred";
     tapping-term-ms = <170>;
+    // Add to stop key repeat behavior
+    ignore-repeat = <1>;
 };
+
 
 &lt {
     tapping-term-ms = <240>;
@@ -34,81 +34,311 @@
 };
 
 / {
-    behaviors {
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            quick-tap-ms = <125>;
-            global-quick-tap;
-            bindings = <&kp>, <&kp>;
+    combos {
+        compatible = "zmk,combos";
+
+        alpha_tab_combo {
+            timeout-ms = <50>;
+            bindings = <&kp TAB>;
+            key-positions = <0 5>; // B + N
+        };
+        alpha_at_combo {
+            timeout-ms = <50>;
+            bindings = <&kp AT>;
+            key-positions = <1 6>; // L + R
+        };
+        alpha_percent_combo {
+            timeout-ms = <50>;
+            bindings = <&kp PERCENT>;
+            key-positions = <2 7>; // D + T
+        };
+        alpha_amp_combo {
+            timeout-ms = <50>;
+            bindings = <&kp AMPERSAND>;
+            key-positions = <3 8>; // W + S
+        };
+        alpha_esc_combo {
+            timeout-ms = <50>;
+            bindings = <&kp ESCAPE>;
+            key-positions = <4 9>; // Z + G
+        };
+        alpha_cut_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LC(X)>;
+            key-positions = <6 16>; // R + X
+        };
+        alpha_copy_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LC(C)>;
+            key-positions = <7 17>; // T + M
+        };
+        alpha_paste_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LC(V)>;
+            key-positions = <8 18>; // S + C
+        };
+        alpha_brace_open_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LBRC>;
+            key-positions = <1 2>; // L + D
+        };
+        alpha_brace_close_combo {
+            timeout-ms = <50>;
+            bindings = <&kp RBRC>;
+            key-positions = <2 3>; // D + W
+        };
+        alpha_brace_pair_combo {
+            timeout-ms = <50>;
+            bindings = <&macro_braces>;
+            key-positions = <1 3>; // L + W
+        };
+        alpha_minus_combo {
+            timeout-ms = <50>;
+            bindings = <&kp MINUS>;
+            key-positions = <6 7>; // R + T
+        };
+        alpha_equal_combo {
+            timeout-ms = <50>;
+            bindings = <&kp EQUAL>;
+            key-positions = <7 8>; // T + S
+        };
+        alpha_plus_combo {
+            timeout-ms = <50>;
+            bindings = <&kp PLUS>;
+            key-positions = <8 9>; // S + G
+        };
+        alpha_undo_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LC(Z)>;
+            key-positions = <6 8>; // R + S
+        };
+        alpha_bracket_open_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LBKT>;
+            key-positions = <16 17>; // X + M
+        };
+        alpha_bracket_close_combo {
+            timeout-ms = <50>;
+            bindings = <&kp RBKT>;
+            key-positions = <17 18>; // M + C
+        };
+        alpha_bracket_pair_combo {
+            timeout-ms = <50>;
+            bindings = <&macro_brackets>;
+            key-positions = <16 18>; // X + C
+        };
+
+        // Right Side Combos
+        alpha_excl_combo {
+            timeout-ms = <50>;
+            bindings = <&kp EXCLAMATION>;
+            key-positions = <10 15>; // , + Y
+        };
+        alpha_caret_combo {
+            timeout-ms = <50>;
+            bindings = <&kp CARET>;
+            key-positions = <11 16>; // F + H
+        };
+        alpha_star_combo {
+            timeout-ms = <50>;
+            bindings = <&kp ASTERISK>;
+            key-positions = <12 17>; // O + A
+        };
+        alpha_hash_combo {
+            timeout-ms = <50>;
+            bindings = <&kp HASH>;
+            key-positions = <13 18>; // U + E
+        };
+        alpha_dollar_combo {
+            timeout-ms = <50>;
+            bindings = <&kp DOLLAR>;
+            key-positions = <14 19>; // J + I
+        };
+        alpha_quotes_combo {
+            timeout-ms = <50>;
+            bindings = <&macro_quotes>;
+            key-positions = <16 21>; // H + P
+        };
+        alpha_squotes_combo {
+            timeout-ms = <50>;
+            bindings = <&macro_squotes>;
+            key-positions = <17 22>; // A + '
+        };
+        alpha_question_combo {
+            timeout-ms = <50>;
+            bindings = <&kp QUESTION>;
+            key-positions = <18 23>; // E + .
+        };
+        alpha_paren_open_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LPAR>;
+            key-positions = <11 12>; // F + O
+        };
+        alpha_paren_close_combo {
+            timeout-ms = <50>;
+            bindings = <&kp RPAR>;
+            key-positions = <12 13>; // O + U
+        };
+        alpha_paren_pair_combo {
+            timeout-ms = <50>;
+            bindings = <&macro_parens>;
+            key-positions = <11 13>; // F + U
+        };
+        alpha_pipe_combo {
+            timeout-ms = <50>;
+            bindings = <&kp PIPE>;
+            key-positions = <15 16>; // Y + H
+        };
+        alpha_quote_combo {
+            timeout-ms = <50>;
+            bindings = <&kp DQT>;
+            key-positions = <16 17>; // H + A
+        };
+        alpha_enter_combo {
+            timeout-ms = <50>;
+            bindings = <&kp ENTER>;
+            key-positions = <17 18>; // A + E
+        };
+        alpha_grave_combo {
+            timeout-ms = <50>;
+            bindings = <&kp GRAVE>;
+            key-positions = <18 19>; // E + I
+        };
+        alpha_lt_combo {
+            timeout-ms = <50>;
+            bindings = <&kp LESS_THAN>;
+            key-positions = <21 22>; // P + '
+        };
+        alpha_gt_combo {
+            timeout-ms = <50>;
+            bindings = <&kp GREATER_THAN>;
+            key-positions = <22 23>; // ' + .
+        };
+        alpha_angle_combo {
+            timeout-ms = <50>;
+            bindings = <&macro_angles>;
+            key-positions = <21 23>; // P + .
         };
     };
 
-    combos { compatible = "zmk,combos"; };
+    behaviors {
+        macro_braces {
+            compatible = "zmk,behavior-macro";
+            label = "{}";
+            bindings = <&kp LBRC &kp RBRC &kp LEFT_ARROW>;
+        };
+        macro_brackets {
+            compatible = "zmk,behavior-macro";
+            label = "[]";
+            bindings = <&kp LBKT &kp RBKT &kp LEFT_ARROW>;
+        };
+        macro_quotes {
+            compatible = "zmk,behavior-macro";
+            label = "\"\"";
+            bindings = <&kp DQT &kp DQT &kp LEFT_ARROW>;
+        };
+        macro_squotes {
+            compatible = "zmk,behavior-macro";
+            label = "''";
+            bindings = <&kp SQT &kp SQT &kp LEFT_ARROW>;
+        };
+        macro_parens {
+            compatible = "zmk,behavior-macro";
+            label = "()";
+            bindings = <&kp LPAR &kp RPAR &kp LEFT_ARROW>;
+        };
+        macro_angles {
+            compatible = "zmk,behavior-macro";
+            label = "<>";
+            bindings = <&kp LT &kp GT &kp LEFT_ARROW>;
+        };
+		mouse_up {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Up";
+            bindings = <&mouse_move_up>;
+        };
+        mouse_down {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Down";
+            bindings = <&mouse_move_down>;
+        };
+        mouse_left {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Left";
+            bindings = <&mouse_move_left>;
+        };
+        mouse_right {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Right";
+            bindings = <&mouse_move_right>;
+        };
+        mouse_left_wheel {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Left Wheel";
+            bindings = <&mouse_wheel_left>;
+        };
+        mouse_right_wheel {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Right Wheel";
+            bindings = <&mouse_wheel_right>;
+        };
+        mouse_up_wheel {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Up Wheel";
+            bindings = <&mouse_wheel_up>;
+        };
+        mouse_down_wheel {
+            compatible = "zmk,behavior-mouse";
+            label = "Mouse Down Wheel";
+            bindings = <&mouse_wheel_down>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
 
-        Base {
-            display-name = "Base";
+        Alpha {
+            display-name = "Alpha";
             bindings = <
-              &kp Q       &kp W       &kp E          &kp R         &kp T        &kp Y    &kp U        &kp I        &kp O       &kp P
-              &hm LGUI A  &hm LALT S  &hm LCTRL D    &hm LSHIFT F  &kp G        &kp H    &hm RSHFT J  &hm RCTRL K  &hm RALT L  &hm RGUI SEMICOLON
-&lt 3 ESCAPE  &kp Z       &kp X       &kp C          &kp V         &kp B        &kp N    &kp M        &kp COMMA    &kp DOT     &kp SLASH           &kp APOSTROPHE
-                                      &mt LCTRL DEL  &lt 1 TAB     &kp SPACE    &kp RET  &lt 2 BSPC   &kp MINUS
+                &mt LGUI &kp B  &mt LGUI &kp L  &mt LGUI &kp D  &mt LGUI &kp W  &mt LGUI &kp Z
+                &mt LGUI &kp COMMA &mt LGUI &kp F  &mt LGUI &kp O  &mt LGUI &kp U  &mt LGUI &kp J
+                &mt LGUI &kp N  &mt LGUI &kp R  &mt LGUI &kp T  &mt LGUI &kp S  &mt LGUI &kp G
+                &mt LGUI &kp Y  &mt LGUI &kp H  &mt LGUI &kp A  &mt LGUI &kp E  &mt LGUI &kp I
+                &lt 2    &mt LGUI &kp Q  &mt LGUI &kp X  &mt LGUI &kp M  &mt LGUI &kp C  &mt LGUI &kp V
+                &mt LGUI &kp O  &mt LGUI &kp P  &mt LGUI &kp W  &mt LGUI &kp S
             >;
         };
-
-        Nav {
+		
+		Nav {
             display-name = "Nav";
             bindings = <
-              &kp TILDE       &trans     &kp UP_ARROW  &trans     &kp LBRC    &kp RBRC  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0
-              &kp LEFT_SHIFT  &kp LEFT   &kp DOWN      &kp RIGHT  &kp LBKT    &kp RBKT  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp MINUS
-&kp LEFT_ALT  &kp LEFT_WIN    &kp MINUS  &trans        &kp PLUS   &kp LPAR    &kp RPAR  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp KP_MULTIPLY  &kp PLUS
-                                         &trans        &trans     &trans      &trans    &trans        &kp DOT
+                // Left Side
+                &ctrl &shift &kp TAB    &ctrl &kp TAB    &mouse_up  &none    &kp BTN2      // Top
+                &none    &mouse_left    &mouse_down     &mouse_right &kp BTN1     // Middle
+                &none    &ctrl &kp Z    &ctrl &kp X      &ctrl &kp C     &ctrl &kp V     &ctrl &kp Y  // Bottom
+                &kp REPEAT  &to 2      &kp LSFT   // Thumb
+                // Right Side
+                &none    &kp HOME     &ctrl &kp PGDN    &ctrl &kp PGUP    &kp END      // Top
+                &none    &kp LEFT     &kp DOWN         &kp UP            &kp RIGHT    // Middle
+                &none    &mouse_left_wheel &mouse_down_wheel &mouse_up_wheel &mouse_right_wheel &none // Bottom
+                &kp BSPC  &to 0      &kp LCTRL   // Thumb
             >;
         };
 
-        Sym {
-            display-name = "Sym";
+		Num {
+            display-name = "Num";
             bindings = <
-                &kp EXCL  &kp AT  &kp HASH  &kp DOLLAR  &kp PERCENT    &kp CARET  &kp AMPERSAND  &kp KP_ASTERISK  &kp SQT  &kp DQT
-                &trans    &trans  &trans    &trans      &trans         &trans     &trans         &trans           &trans   &trans
-&studio_unlock  &trans    &trans  &trans    &trans      &trans         &kp UNDER  &kp EQUAL      &trans           &trans   &kp SLASH  &kp HOME
-                                  &trans    &trans      &trans         &trans     &trans         &trans
-            >;
-        };
-
-        Fun {
-            display-name = "Fun";
-            bindings = <
-        &bootloader  &trans  &trans  &trans  &to 4     &trans  &trans  &trans  &kp END  &kp F1
-        &trans       &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans   &kp F10
-&trans  &trans       &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans   &kp F20  &kp F7
-                             &trans  &trans  &trans    &trans  &trans  &trans
-            >;
-        };
-
-        Gaming {
-            display-name = "Game";
-            bindings = <
-            &kp Z           &kp X  &kp C      &kp V         &sl 5     &trans  &trans  &trans  &trans  &trans
-            &kp TAB         &kp Q  &kp W      &kp E         &kp R     &trans  &trans  &trans  &trans  &trans
-&kp ESCAPE  &kp LEFT_SHIFT  &kp A  &kp S      &kp D         &kp F     &trans  &trans  &trans  &trans  &trans  &trans
-                                   &kp LCTRL  &kp LEFT_ALT  &trans    &trans  &trans  &trans
-            >;
-        };
-
-        Gaming+ {
-            display-name = "Game+";
-            bindings = <
-        &kp F10  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp T     &kp RA(RC(Y))  &kp RA(RC(U))  &trans  &trans  &kp LC(RA(DEL))
-        &kp L    &kp O         &kp Y         &kp K         &kp G     &kp F5         &kp F7         &trans  &trans  &kp F12
-&trans  &to 0    &trans        &trans        &trans        &trans    &trans         &trans         &trans  &trans  &kp F22          &kp LA(F4)
-                               &kp J         &kp I         &kp M     &trans         &trans         &trans
+                // Left Side
+                &none   &none   &none   &none   &none   // Top
+                &volume_down &media_previous &media_play_pause &media_next &volume_up  // Middle
+                &none   &none   &none   &none   &none   // Bottom
+                &kp REPEAT  &to 1      &kp LSFT   // Thumb
+                
+                // Right Side
+                &kp KP_ASTERISK &kp 7   &kp 8   &kp 9   &kp KP_PLUS // Top
+                &kp KP_SLASH    &kp 4   &kp 5   &kp 6   &kp KP_MINUS // Middle
+                &kp KP_EQUAL    &kp 1   &kp 2   &kp 3   &kp 0   &kp KP_DOT // Bottom
+                &kp BSPC   &to 0      &kp LCTRL   // Thumb
             >;
         };
     };
