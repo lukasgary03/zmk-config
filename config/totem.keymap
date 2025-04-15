@@ -313,7 +313,7 @@
             display-name = "Nav";
             bindings = <
                 // Left Side
-                &ctrl &shift &kp TAB    &ctrl &kp TAB    &mouse_up  &none    &kp BTN2      // Top
+                &ks LCTRL LSHIFT TAB  &ks LCTRL TAB  &mouse_up  &none  &kp BTN2   // Top
                 &none    &mouse_left    &mouse_down     &mouse_right &kp BTN1     // Middle
                 &none    &ctrl &kp Z    &ctrl &kp X      &ctrl &kp C     &ctrl &kp V     &ctrl &kp Y  // Bottom
                 &kp REPEAT  &to 2      &kp LSFT   // Thumb
